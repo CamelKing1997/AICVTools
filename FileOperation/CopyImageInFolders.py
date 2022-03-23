@@ -2,9 +2,10 @@ import os
 import shutil
 import sys
 from stat import *
+import argparse
 
-SOURCEFOLDER = 'E:\\00_Project\\2022\\DN2130801\\Labels\\zip\\3.21'
-TARGETFOLDER = 'E:\\00_Project\\2022\\DN2130801\\Labels\\20220321'
+SOURCEFOLDER = 'E:\\00_Project\\2022\\DN2130801\\Dataset\\LHC\\yolo-3.22'
+TARGETFOLDER = 'E:\\00_Project\\2022\\DN2130801\\Labels\\20220322_lhc'
 
 
 def walktree(top, callback):
@@ -29,8 +30,17 @@ def copyfile(file):
     filename = os.path.basename(file)
     targetimagepath = os.path.join(TARGETFOLDER, filename)
     shutil.copy(file, targetimagepath)
-    print('Copy file from ' + file + '\r\n---- to ----\r\n' + targetimagepath + '.')
+    print('Copy file from ' + file +  ' to ' + targetimagepath + '.')
 
+def parse_opt():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--srcdir', type=str, default='E:\\00_Project\\2022\\DN2130801\\Dataset\\LHC\\yolo-3.22')
+    parser.add_argument('--tardir', type=str, default='E:\\00_Project\\2022\\DN2130801\\Labels\\20220322_lhc')
+    opt = parser.parse_args()
+    return opt
 
 if __name__ == '__main__':
+    opt = parse_opt()
+    SOURCEFOLDER = opt.srcdir
+    TARGETFOLDER = opt.tardir
     walktree(SOURCEFOLDER, copyfile)

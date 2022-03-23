@@ -9,8 +9,12 @@ import PIL.Image
 import random
 
 JSON_DIR = 'json'
+
 LABELCOLOR = {  # 设定label染色情况
     'product': 1,
+    'product': 2,
+    'product': 3,
+    'product': 4,
 }
 
 VOCVersion = 'VOC2012'

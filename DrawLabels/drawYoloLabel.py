@@ -3,6 +3,8 @@ from tqdm import tqdm
 import cv2
 import numpy as np
 
+from utils.TextTools import removeCRLF
+
 ROOT = 'E:/00_Project/2022/Tools/PythonCVTools'
 DATAPATH = '../DrawLabels/data/20220316'
 OutputPath = os.path.join(DATAPATH, 'Drawed')
@@ -57,19 +59,6 @@ def drawLabel():
                 # cv2.putText(img, l, (int(x1), int(y1) - 8), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 255), 2)
                 filename = os.path.join(OutputPath, labelfile + '.jpg')
                 cv2.imwrite(filename, img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-
-
-def removeCRLF(line):
-    line = line.decode()
-    if '\r\n' in line:
-        line = line.removesuffix('\r\n')
-    elif '\r' in line:
-        line = line.removesuffix('\r')
-    elif '\n' in line:
-        line = line.removesuffix('\n')
-    else:
-        pass
-    return line
 
 
 def randomConfidence():
